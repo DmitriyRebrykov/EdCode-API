@@ -1,12 +1,16 @@
-from django.contrib import admin
-from django.urls import path, include
-from rest_framework import routers
-
-from apps.courses.views import CategoryViewSet, CourseViewSet, LessonViewSet
-
-router = routers.DefaultRouter()
+from django.urls import path
+from .views import (
+    RegistrationView,
+    LoginView,
+    ProfileView,
+    logout_view
+)
 
 app_name = 'accounts'
+
 urlpatterns = [
-    path('', include(router.urls))
+    path('register/', RegistrationView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('profile/', ProfileView.as_view(), name='profile'),
 ]
